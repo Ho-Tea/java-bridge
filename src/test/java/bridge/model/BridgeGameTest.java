@@ -3,6 +3,7 @@ package bridge.model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -30,6 +31,12 @@ class BridgeGameTest {
         );
     }
 
-    // 코드리뷰를 테스트하기 위해 win()에 대한 테스트 코드 작성 X
+    @Test
+    @DisplayName("사용자가 게임을 성공했는지 알 수 있다.")
+    void win(){
+        BridgeGame bridgeGame = new BridgeGame(new Bridge(new ArrayList<>()));
+        assertThat(bridgeGame.win(CrossingResult.SUCCESS)).isEqualTo(GameResult.SUCCESS);
+    }
+
 
 }

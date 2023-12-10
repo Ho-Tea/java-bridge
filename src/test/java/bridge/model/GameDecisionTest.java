@@ -1,5 +1,6 @@
 package bridge.model;
 
+import bridge.constant.GameDecision;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

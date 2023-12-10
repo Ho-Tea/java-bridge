@@ -1,5 +1,7 @@
 package bridge.model;
 
+import bridge.constant.CrossingResult;
+import bridge.constant.GameResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -35,7 +37,12 @@ class BridgeGameTest {
     @DisplayName("사용자가 게임을 성공했는지 알 수 있다.")
     void win(){
         BridgeGame bridgeGame = new BridgeGame(new Bridge(new ArrayList<>()));
-        assertThat(bridgeGame.win(CrossingResult.SUCCESS)).isEqualTo(GameResult.SUCCESS);
+        assertAll(
+                () -> assertThat(bridgeGame.win(CrossingResult.SUCCESS)).isEqualTo(GameResult.SUCCESS),
+                () -> assertThat(bridgeGame.win(CrossingResult.FAIL)).isEqualTo(GameResult.FAIL)
+
+        );
+
     }
 
 

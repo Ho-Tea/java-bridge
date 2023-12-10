@@ -1,5 +1,9 @@
 package bridge.model;
 
+import bridge.constant.CrossingResult;
+import bridge.constant.GameDecision;
+import bridge.constant.GameResult;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -9,6 +13,7 @@ public class BridgeGame {
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
     }
+
 
 
     /**

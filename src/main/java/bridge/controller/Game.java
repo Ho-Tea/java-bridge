@@ -1,5 +1,9 @@
 package bridge.controller;
 
+import bridge.constant.CrossingDirection;
+import bridge.constant.CrossingResult;
+import bridge.constant.GameDecision;
+import bridge.constant.GameResult;
 import bridge.model.*;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -35,20 +39,21 @@ public class Game {
                 return;
             }
         }
-        outputView.printResult(crossingResults, crossingDirections);
-        outputView.printTotalResult(bridgeGame.win(crossingResults.get(crossingResults.size() - 1)), count);
+        result(crossingResults, crossingDirections, bridgeGame.win(crossingResults.get(crossingResults.size()-1)));
     }
 
     private void retry(Bridge bridge, List<CrossingResult> crossingResults, List<CrossingDirection> crossingDirections) {
         if (attempt(() -> GameDecision.of(attempt(() -> inputView.readGameCommand())).equals(GameDecision.RETRY))) {
             count++;
             play(new Bridge(bridge), new ArrayList<>(), new ArrayList<>());
-            return;
         }
-        outputView.printResult(crossingResults, crossingDirections);
-        outputView.printTotalResult(GameResult.FAIL, count);
+        result(crossingResults, crossingDirections, GameResult.FAIL);
     }
 
+    private void result(List<CrossingResult> crossingResults, List<CrossingDirection> crossingDirections, GameResult gameResult){
+        outputView.printResult(crossingResults, crossingDirections);
+        outputView.printTotalResult(gameResult, count);
+    }
     private <T> T attempt(Supplier<T> inputSupplier) {
         try {
             return inputSupplier.get();

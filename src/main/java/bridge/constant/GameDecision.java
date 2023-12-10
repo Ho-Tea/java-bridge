@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge.constant;
 
 import java.util.Arrays;
 
